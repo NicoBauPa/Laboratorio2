@@ -1,15 +1,15 @@
 # Laboratorio 2. Convolución, correlación y transformación.
 
-##Introducción.
+## Introducción.
 
 
-##Paso a paso.
+## Paso a paso.
 
 
-##Análisis de resultados.
+## Análisis de resultados.
 
 
-##Conclusión.
+## Conclusión.
 
 
-##Referencias.
+## Referencias.
