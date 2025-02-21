@@ -47,6 +47,7 @@ x_nicole = np.array([5, 6, 0, 0, 5, 7, 4])
 ```
 Graficas de convolución:
 ![image](https://github.com/user-attachments/assets/883476bf-7096-41a4-87c4-6cd5753c5136)
+![image](https://github.com/user-attachments/assets/56129b1a-8028-4aa5-80df-14b5be747f4e)
 
 
 
