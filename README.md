@@ -6,7 +6,20 @@ En este laboratorio, exploraremos estos conceptos tanto de forma teórica como p
 Este documento analiza la apnea del sueño, un trastorno caracterizado por pausas en la respiración durante el sueño, y su detección mediante señales electrocardiográficas (ECG). Se basa en la base de datos Apnea-ECG de PhysioNet, que contiene registros de ECG para el desarrollo de métodos automatizados de diagnóstico. El contenido ha sido elaborado por  Dr. Thomas Penzel de la Universidad Phillips, Marburgo, Alemania, con el objetivo de proporcionar una visión técnica sobre la apnea y su análisis a través de ECG.
 
 ## Paso a paso.
-
+ Seleccionar la señal EMG por medio de Physionet [link Physionet](https://physionet.org/)
+- Guardar los archivos .hea, .data, .apn en una misma carpeta junto con la señal
+- Abrir Python, nombrar el archivo y guardarlo en la misma carpeta donde se encuentran los archivos .hea .data y apn.
+- Abrir de nuevo python y iniciar con la programación que explicaremos a continuación:
+  
+## Programación y Datos estadísticos:
+Inicialmente agregamos las librerias:
+```  python
+import numpy as np
+import matplotlib.pyplot as plt
+import wfdb
+import scipy.signal as signal
+import os
+```
 
 ## Análisis de resultados.
 
