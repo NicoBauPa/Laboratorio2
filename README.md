@@ -20,7 +20,11 @@ import wfdb
 import scipy.signal as signal
 import os
 ```
-
+- **NumPy** ( np) nos ayuda con el manejo de matrices y operaciones matemáticas.
+- **Matplotlib** ( plt) se usa para graficar datos.
+-**WFDB** ( wfdb) nos permite trabajar con señales fisiológicas como el ECG.
+-**SciPy Signal** ( signal) se usa para procesar señales (aunque en este código no se usa mucho).
+-**OS** ( os) nos permite manejar archivos y rutas en el sistema operativo.
 ## Análisis de resultados.
 
 
