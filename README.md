@@ -50,8 +50,20 @@ Graficas de convolución:
 
 ```
 
-plt.figure(figsize=(12, 6))
+```
+### Grafico:
 
+Este fragmento de código usa *Matplotlib* para visualizar las señales convolucionadas de Gime, María José y Nicole en una sola figura con tres subgráficos. Primero, se crea una figura de tamaño 12x6. Luego, se generan tres gráficos de tipo *stem*, que representan las señales discretas con líneas y marcadores.  
+
+- En el primer *subplot*, se grafica la convolución de Gime en color amarillo (`y-` para las líneas y `yo` para los marcadores).  
+- En el segundo, se muestra la convolución de María José en rojo (`r-` y `ro`).  
+- En el tercero, se grafica la convolución de Nicole en verde (`g-` y `go`).  
+
+Cada gráfico tiene su título, etiquetas para los ejes \( n \) y \( y[n] \), y *plt.tight_layout()* ajusta los espacios para que no se sobrepongan los elementos. Finalmente, *plt.show()* muestra la figura con las tres gráficas.
+
+```
+
+plt.figure(figsize=(12, 6))
 plt.subplot(3, 1, 1)
 plt.stem(y_gime, linefmt='y-', markerfmt='yo', basefmt='k-')
 plt.title("Convolución de Gime")
@@ -74,16 +86,38 @@ plt.tight_layout()
 plt.show()
 
 ```
-### Grafico:
 
-Este fragmento de código usa *Matplotlib* para visualizar las señales convolucionadas de Gime, María José y Nicole en una sola figura con tres subgráficos. Primero, se crea una figura de tamaño 12x6. Luego, se generan tres gráficos de tipo *stem*, que representan las señales discretas con líneas y marcadores.  
+### Cálculo de correlación:
 
-- En el primer *subplot*, se grafica la convolución de Gime en color amarillo (`y-` para las líneas y `yo` para los marcadores).  
-- En el segundo, se muestra la convolución de María José en rojo (`r-` y `ro`).  
-- En el tercero, se grafica la convolución de Nicole en verde (`g-` y `go`).  
+El código calcula la correlación cruzada entre dos señales, un coseno y un seno de 100 Hz. Primero, define el tiempo de muestreo (`Ts = 1.25 ms`) y genera 9 muestras (`n = np.arange(9)`). Luego, crea las señales `x1` y `x2` usando funciones coseno y seno, respectivamente. Finalmente, con `np.correlate(x1, x2, mode='full')`, mide la similitud entre ambas en distintos desfases, lo que permite analizar su relación temporal.
 
-Cada gráfico tiene su título, etiquetas para los ejes \( n \) y \( y[n] \), y *plt.tight_layout()* ajusta los espacios para que no se sobrepongan los elementos. Finalmente, *plt.show()* muestra la figura con las tres gráficas.
+```
+Correlación:
+Ts = 1.25e-3  # Tiempo de muestreo en segundos
+n = np.arange(9)  # Nueve muestras según el documento
+f = 100  # Frecuencia en Hz
 
+Definición de las señales:
+x1 = np.cos(2 * np.pi * f * n * Ts)  # Señal x1[n]
+x2 = np.sin(2 * np.pi * f * n * Ts)  # Señal x2[n]
+
+Correlación cruzada entre ambas señales:
+correlacion = np.correlate(x1, x2, mode='full')
+
+```
+### Gráfico: 
+Este código genera una gráfica de la correlación cruzada entre las señales \( x_1[n] \) y \( x_2[n] \). Primero, se crea una figura de tamaño 8x4. Luego, con `plt.stem()`, se representa la correlación cruzada en un gráfico de líneas y marcadores azules (`b-` y `bo`), con una línea base negra (`k-`). El eje x muestra los desplazamientos de la correlación, que van desde `-len(x1) + 1` hasta `len(x1)`, indicando cómo varía la similitud entre las señales a diferentes desfases. Se añaden título, etiquetas y una cuadrícula para mejorar la visualización. Finalmente, `plt.show()` muestra el gráfico.
+
+```
+plt.figure(figsize=(8, 4))
+plt.stem(np.arange(-len(x1)+1, len(x1)), correlacion, linefmt='b-', markerfmt='bo', basefmt='k-')
+plt.title("Correlación cruzada entre x1[n] y x2[n]")
+plt.xlabel("Desplazamiento (n)")
+plt.ylabel("Correlación")
+plt.grid(True)
+plt.show()
+
+```
 ## Conclusión.
 
 
