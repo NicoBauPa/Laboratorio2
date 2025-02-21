@@ -96,6 +96,16 @@ plt.show()
 El código calcula la correlación cruzada entre dos señales, un coseno y un seno de 100 Hz. Primero, define el tiempo de muestreo (`Ts = 1.25 ms`) y genera 9 muestras (`n = np.arange(9)`). Luego, crea las señales `x1` y `x2` usando funciones coseno y seno, respectivamente. Finalmente, con `np.correlate(x1, x2, mode='full')`, mide la similitud entre ambas en distintos desfases, lo que permite analizar su relación temporal.
 
 ```
+Ts = 1.25e-3  
+n = np.arange(9) 
+f = 100  # Frecuencia en Hz
+
+
+x1 = np.cos(2 * np.pi * f * n * Ts)  # Señal x1[n]
+x2 = np.sin(2 * np.pi * f * n * Ts)  # Señal x2[n]
+
+
+correlacion = np.correlate(x1, x2, mode='full')
 ```
 ### Correlación:
 
@@ -262,3 +272,7 @@ En este laboratorio, exploramos la convolución y la correlación como herramien
 La implementación en Python facilitó el análisis y la visualización de los resultados, permitiéndonos interpretar mejor la información contenida en las señales. Esto es fundamental en aplicaciones como el procesamiento de señales biomédicas, donde la correcta identificación de patrones en ECG u otras señales fisiológicas puede mejorar el diagnóstico y la toma de decisiones clínicas. En general, este laboratorio reforzó la importancia de estas técnicas en el análisis y manipulación de señales digitales.
 
 ## Referencias.
+- Oppenheim, AV, y Willsky, AS (1996). Señales y sistemas (2.ª ed.). Prentice Hall.
+- Proakis, JG, y Manolakis, DG (2007). Procesamiento de señales digitales: principios, algoritmos y aplicaciones (4.ª ed.). Pearson
+- Cohen, L. (1995). Análisis de tiempo-frecuencia . Prentice Hall.
+- Clifford, GD, Azuaje, F., y McSharry, PE (2006). Métodos y herramientas avanzados para el análisis de datos de ECG . Artech House.
