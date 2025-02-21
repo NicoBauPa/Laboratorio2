@@ -11,7 +11,7 @@ Este documento analiza la apnea del sueño, un trastorno caracterizado por pausa
 - Abrir Python, nombrar el archivo y guardarlo en la misma carpeta donde se encuentran los archivos .hea .data y apn.
 - Abrir de nuevo python y iniciar con la programación que explicaremos a continuación:
   
-## Programación y Datos estadísticos:
+## Programación:
 Inicialmente agregamos las librerias:
 ```  python
 import numpy as np
