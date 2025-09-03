@@ -3,6 +3,69 @@
 ## Introducción.
 Uno de los elementos tratados en la practica a continuación, es la convolución, para esto usamos los digitos del codigo universsitario y el documento de identificación de cada una de las integrantes, este proceso se realiza de manera manual y se implementa esto mismo de manera digital por medio de programación en Phyton mostrando la convolución de manera gráfica, con estas mismas señales se calcula la correlación. Por otro lado, se escogió una señal ECG de apnea del sueño, un trastorno caracterizado por pausas en la respiración durante el sueño, y su detección mediante señales electrocardiográficas (ECG). Se basa en la base de datos Apnea-ECG de PhysioNet, que contiene registros de ECG para el desarrollo de métodos automatizados de diagnóstico. El contenido ha sido elaborado por  Dr. Thomas Penzel de la Universidad Phillips, Marburgo, Alemania, con el objetivo de proporcionar una visión técnica sobre la apnea y su análisis a través de ECG. A partir de esta señal, aplicaremos la transformada de Fourier para analizar señales en el dominio de la frecuencia, lo que nos permitirá extraer información clave sobre su comportamiento en el dominio del tiempo (media, mediana, desviación estandar, máximos y mínimos) y el dominio de la frecuencia (la frecuencia media, frecuencia mediana y desviación etsandar de la frecuencia).
 
+## Marco Teórico
+
+### Convolución
+La convolución discreta se define como:  
+\[
+y[n] = (x * h)[n] = \sum_{k=-\infty}^{\infty} x[k] \cdot h[n-k]
+\]  
+Permite calcular la salida \(y[n]\) de un sistema LTI a partir de su respuesta al impulso \(h[n]\) y la señal de entrada \(x[n]\).  
+
+---
+
+### Correlación cruzada
+Mide el nivel de semejanza entre dos señales \(x[n]\) y \(y[n]\) bajo un desplazamiento \(m\):  
+\[
+R_{xy}[m] = \sum_n x[n]\cdot y[n+m]
+\]  
+Si \(R_{xy}[0]\) es grande, las señales están alineadas; si es cercano a cero, son ortogonales.  
+
+---
+
+### Señales sinusoidales
+El coseno y el seno son señales fundamentales en el análisis de Fourier. Aunque poseen la misma frecuencia, su desfase de 90° las hace ortogonales.  
+
+---
+
+### Señal ECG
+El electrocardiograma registra la actividad eléctrica del corazón. Contiene componentes como la onda P, el complejo QRS y la onda T. Su contenido espectral se concentra entre 0.5–40 Hz, razón por la cual se aplican filtros pasa banda en ese rango.  
+
+---
+
+### Transformada de Fourier y espectro de potencia
+La FFT permite pasar al dominio de la frecuencia, representando la distribución de energía de la señal. La densidad espectral de potencia (PSD) indica cuánta potencia existe en cada componente frecuencial.  
+
+---
+
+### Filtrado digital
+Un filtro pasa banda (0.5–40 Hz) elimina la deriva de línea base (<0.5 Hz) y el ruido de alta frecuencia (>40 Hz), conservando los componentes útiles del ECG.  
+
+---
+
+### Coeficiente de correlación de Pearson
+Se define como:  
+\[
+r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2}\,\sqrt{\sum (y_i - \bar{y})^2}}
+\]  
+Mide la relación lineal entre dos señales:  
+- \(r=1\): correlación perfecta positiva.  
+- \(r=0\): no hay correlación lineal.  
+- \(r=-1\): correlación perfecta negativa.  
+
+---
+
+## Metodología
+El trabajo se desarrolló en **Python 3.11** con librerías NumPy, Matplotlib, SciPy y WFDB.  
+
+### Flujo de trabajo:
+1. Definición de señales discretas (h[n], x[n]) y cálculo de la convolución.  
+2. Generación de señales sinusoidales (coseno y seno) y cálculo de la correlación cruzada.  
+3. Lectura de una señal ECG desde PhysioNet.  
+4. Obtención de estadísticas descriptivas en el dominio del tiempo.  
+5. Cálculo de la FFT, densidad espectral de potencia e histograma de frecuencias.  
+6. Aplicación de un filtro digital pasa banda (0.5–40 Hz).  
+7. Cálculo del coeficiente de correlación de Pearson (original vs filtrada, original vs reconstruida). 
 ## Paso a paso.
  Seleccionar la señal EMG por medio de Physionet [link Physionet](https://physionet.org/)
 - Guardar los archivos .hea, .data, .apn en una misma carpeta junto con la señal
